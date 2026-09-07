@@ -10,6 +10,7 @@ framework dependencies. Provides WCAG contrast validation, color space
 conversions (hex, RGB, HSL, OKLCH, OKLAB), and LRU caching.
 """
 
+load("@aspect_rules_js//js:defs.bzl", "js_test")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@tummycrypt_tinyland_color_utils_npm//:defs.bzl", "npm_link_all_packages")
@@ -63,7 +64,7 @@ npm_package(
         ":tinyland_color_utils",
     ],
     package = "@tummycrypt/tinyland-color-utils",
-    version = "0.2.3",
+    version = "0.2.4",
     visibility = ["//visibility:public"],
 )
 
@@ -121,4 +122,24 @@ exports_files(
         "vitest.config.ts",
     ],
     visibility = ["//visibility:public"],
+)
+
+js_test(
+    name = "package_authority_test",
+    entry_point = "tests/package-authority.test.mjs",
+    data = glob([".github/workflows/*.yml"]) + [
+        ".bazelrc",
+        "BUILD.bazel",
+        "MODULE.bazel",
+        "package.json",
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml",
+    ],
+)
+
+js_test(
+    name = "package_artifact_test",
+    entry_point = "tests/package-artifact.test.mjs",
+    args = ["$(rootpath :pkg)"],
+    data = [":pkg"],
 )
