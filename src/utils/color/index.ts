@@ -23,7 +23,7 @@ export type {
 	ContrastValidation,
 	ColorBlindnessType,
 	ColorPalette
-} from './types';
+} from './types.js';
 
 
 export {
@@ -35,7 +35,7 @@ export {
 	parseOklabString,
 	parseOklchToRgb,
 	parseOklabToRgb
-} from './parser';
+} from './parser.js';
 
 
 export {
@@ -51,7 +51,7 @@ export {
 	oklabToOklch,
 	oklchStringToRgbValues,
 	alphaBlend
-} from './conversion';
+} from './conversion.js';
 
 
 export {
@@ -67,7 +67,7 @@ export {
 	isReadableOnGlass,
 	batchValidate,
 	simulateColorBlindness
-} from './contrast';
+} from './contrast.js';
 
 
 export {
@@ -78,7 +78,7 @@ export {
 	contrastCache,
 	clearAllCaches,
 	getAllCacheStats
-} from './cache';
+} from './cache.js';
 
 
 
@@ -86,18 +86,18 @@ export {
 
 
 
-export { parseColor as getCSSVariableColor } from './parser';
+export { parseColor as getCSSVariableColor } from './parser.js';
 
 
 
 
-export { getRelativeLuminance as getLuminance } from './contrast';
+export { getRelativeLuminance as getLuminance } from './contrast.js';
 
 
 
 
 
-export { alphaBlend as applyTransparency } from './conversion';
+export { alphaBlend as applyTransparency } from './conversion.js';
 
 
 
@@ -147,6 +147,6 @@ export function generateAccessiblePalette(baseColor: string, count = 5, minContr
 	return palette;
 }
 
-import { parseColor } from './parser';
-import { rgbToHex } from './conversion';
-import { meetsWCAG } from './contrast';
+import { parseColor } from './parser.js';
+import { rgbToHex } from './conversion.js';
+import { meetsWCAG } from './contrast.js';
