@@ -2,8 +2,10 @@
 BUILD.bazel for @tummycrypt/tinyland-color-utils.
 
 Dual-mode build: works with both pnpm (standalone) and Bazel (CI/production).
-  Standalone: cd packages/tinyland-color-utils && pnpm test
-  Monorepo:   bazel build //packages/tinyland-color-utils/...
+  Standalone: pnpm test
+  Bazel:      bazel build //:pkg && bazel test //...
+  Consumers:  bazel_dep(name = "tummycrypt_tinyland_color_utils", version = "1.0.0")
+              from xoxd-ai/bazel-registry; the package is not published to npm.
 
 This is a pure JavaScript/TypeScript color utility package with zero
 framework dependencies. Provides WCAG contrast validation, color space
@@ -63,7 +65,7 @@ npm_package(
         ":tinyland_color_utils",
     ],
     package = "@tummycrypt/tinyland-color-utils",
-    version = "0.2.3",
+    version = "1.0.0",
     visibility = ["//visibility:public"],
 )
 
@@ -75,6 +77,7 @@ vitest_bin.vitest_test(
     name = "test",
     data = [
         ":node_modules",
+        "package.json",
         "tsconfig.json",
         ":node_modules/vitest",
         ":node_modules/fast-check",
