@@ -3,7 +3,8 @@ BUILD.bazel for @tummycrypt/tinyland-color-utils.
 
 Dual-mode build: works with both pnpm (standalone) and Bazel (CI/production).
   Standalone: pnpm test
-  Bazel:      bazel build //:pkg && bazel test //...
+  Bazel:      CI (.github/workflows/ci.yml) builds //:pkg and tests //:test.
+              A local `bazel test //...` is local, non-qualifying.
   Consumers:  bazel_dep(name = "tummycrypt_tinyland_color_utils", version = "1.0.0")
               from xoxd-ai/bazel-registry; the package is not published to npm.
 
