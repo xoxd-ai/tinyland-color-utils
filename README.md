@@ -36,7 +36,7 @@ npm_link_package(
 pnpm install
 pnpm typecheck
 pnpm test
-# Bazel: CI (.github/workflows/ci.yml) runs //:pkg and //:test.
+# Bazel: CI (.github/workflows/ci.yml) builds //:pkg and //:test.
 # A local run is local, non-qualifying. .bazelrc stops its server after 120 s idle.
 bazel build //:pkg && bazel test //...
 ```
